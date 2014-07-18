@@ -11,6 +11,12 @@ if [ ! -f $INITIALIZED_FILE -a "${1%_safe}" = 'mysqld' ]; then
 		echo >&2 "Your generated root pwd: ${MYSQL_ROOT_PASSWORD}"
 	fi
 
+	if [ -z "$MYSQL_LOCAL_DATABASE" ]; then
+		export MYSQL_LOCAL_DATABASE=`apg -a 0 -m 15 | head -n 1`
+		echo >&2 "Your generated user pwd: ${MYSQL_LOCAL_DATABASE}"
+	fi
+
+
 	if [ -z "$MYSQL_LOCAL_USER" -o -z "$MYSQL_LOCAL_PASSWORD" -o -z "$MYSQL_LOCAL_DATABASE"  ]; then
 		echo >&2 "Goodbye, you are the weakest link (No username, password and/or database defined)"
 		exit 1
