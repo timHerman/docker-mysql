@@ -11,7 +11,7 @@ if [ ! -f $INITIALIZED_FILE -a "${1%_safe}" = 'mysqld' ]; then
 		echo >&2 "Your generated root pwd: ${MYSQL_ROOT_PASSWORD}"
 	fi
 
-	if [ -z "$MYSQL_LOCAL_PASSWORD ]; then
+	if [ -z "$MYSQL_LOCAL_PASSWORD" ]; then
 		export MYSQL_LOCAL_PASSWORD=`apg -a 0 -m 15 | head -n 1`
 		echo >&2 "Your generated user pwd: ${MYSQL_LOCAL_PASSWORD}"
 	fi
