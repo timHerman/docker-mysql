@@ -32,7 +32,7 @@ if [ ! -f $INITIALIZED_FILE -a "${1%_safe}" = 'mysqld' ]; then
                 DELETE FROM mysql.user WHERE user != "root" OR host != "%";
                 CREATE DATABASE \`${MYSQL_LOCAL_DATABASE}\`;
                 CREATE USER '${MYSQL_LOCAL_USER}'@'%' IDENTIFIED BY '${MYSQL_LOCAL_PASSWORD}';
-                GRANT CREATE,INSERT,DELETE,UPDATE,SELECT on \`${MYSQL_LOCAL_DATABASE}\`.* to '${MYSQL_LOCAL_USER}'@'%';
+                GRANT ALL PRIVILEGES on \`${MYSQL_LOCAL_DATABASE}\`.* to '${MYSQL_LOCAL_USER}'@'%';
                 DROP DATABASE IF EXISTS test;
                 FLUSH PRIVILEGES;
 	EOSQL
